@@ -7,9 +7,9 @@ MaxYearsOfHistory = 10 # Maximum number of time periods per patient
 yearsToTarget = 1 # Number of time periods excluded from history. From observation window cutoff to outcome measurement. In the paper this was either 1 or 5.
 
 import pickle
-with open('TestTrainSets.pkl', 'rb') as f:
+with open('./Data/TestTrainSets.pkl', 'rb') as f:
    [train_x, train_y, test_x, test_y] = pickle.load(f) # train_x, test_x have shape [patients, time, features]; train_y, test_y have shape [patients, label]
-with open('Columns.pkl', 'rb') as f:
+with open('./Data/Columns.pkl', 'rb') as f:
     [cols, categoric_cols, numeric_cols, static_cols] = pickle.load(f) # cols is the list of feature names; categoric_cols, numeric_cols, and static_cols are the names of the features of each type.
 
 #%% Model hyperparameters
