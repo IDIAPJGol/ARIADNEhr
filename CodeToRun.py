@@ -27,13 +27,17 @@ model.compile(loss= two_loss_func,
               optimizer=tf.keras.optimizers.Adam(learning_rate=0.0001),
               metrics=[tf.keras.metrics.Precision(name = "precision"),tf.keras.metrics.AUC(name = "auc"),
                        tf.keras.metrics.AUC(curve = "PR", name = "auc_pr"), tf.keras.metrics.Recall(name = "recall")])
-history = model.fit([train_x[:,:,np.isin(cols,categoric_cols)], train_x[:,:,np.isin(cols, numeric_cols)], train_x[:,0,np.isin(cols, static_cols)]],
-                     train_y[:],
-                     batch_size=batch_size,
-                     epochs=epochs,
-                     callbacks=callback)
 
-model.save_weights('Weights', save_format='tf')
+# Uncomment to train the model
+# history = model.fit([train_x[:,:,np.isin(cols,categoric_cols)], train_x[:,:,np.isin(cols, numeric_cols)], train_x[:,0,np.isin(cols, static_cols)]],
+#                      train_y[:],
+#                      batch_size=batch_size,
+#                      epochs=epochs,
+#                      callbacks=callback)
+
+# model.save_weights('./Data/Weights', save_format='tf')
+
+model.load_weights("./Data/Weights")
 
 #%% Internal Validation
 # Obtaining predictions on test set
